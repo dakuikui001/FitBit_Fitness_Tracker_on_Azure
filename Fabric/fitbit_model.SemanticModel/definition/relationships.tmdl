@@ -1,0 +1,161 @@
+relationship e642f38d-e2c8-4706-92cc-45d9871e8bc0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.StartOfYear
+	toColumn: LocalDateTable_8db6d0a7-5e7b-4aac-a050-985542f83453.Date
+
+relationship 5ed616e6-ec6e-4752-9261-488f74adcd81
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.StartOfMonth
+	toColumn: LocalDateTable_427b7d7a-b8bb-413e-8185-9c806641afbd.Date
+
+relationship 6fb666a9-cbf3-425c-bac5-71a2945b7689
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.StartOfWeek
+	toColumn: LocalDateTable_d455cac5-550f-4ecc-9713-173ab61aea4d.Date
+
+relationship 020cd9c2-ae95-4fee-9c19-438189361459
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Time_Table.Time
+	toColumn: LocalDateTable_90a2c2da-2afc-4c70-b0bf-5582db526e92.Date
+
+relationship dce99896-9907-3a6a-ae0a-69929ec74f3e
+	isActive: false
+	fromColumn: calories_min.date
+	toColumn: Date_Table.Date
+
+relationship 16f66812-acb5-a599-d5f0-71e795a2357e
+	isActive: false
+	fromColumn: heartrate_min.date
+	toColumn: Date_Table.Date
+
+relationship b1eff36c-dcba-3a96-b807-b3c07f403653
+	isActive: false
+	fromColumn: heartrate_sec.date
+	toColumn: Date_Table.Date
+
+relationship 9d7a0cfb-0092-e558-17e7-26cd258748e4
+	isActive: false
+	fromColumn: intensities_min.date
+	toColumn: Date_Table.Date
+
+relationship 764c20fa-eb85-bd6d-dd7c-3fedf8fd9544
+	isActive: false
+	fromColumn: METs_min.date
+	toColumn: Date_Table.Date
+
+relationship 797ee46d-9e4b-943a-db5d-3fe19b3bafc1
+	isActive: false
+	fromColumn: sleep_min.date
+	toColumn: Date_Table.Date
+
+relationship a3f78b48-8f82-4ba0-eeac-bc78de3a868d
+	isActive: false
+	fromColumn: steps_min.date
+	toColumn: Date_Table.Date
+
+relationship bbdadb02-2b64-192f-d409-7bb17390fa63
+	isActive: false
+	fromColumn: weight_daily.date
+	toColumn: Date_Table.Date
+
+relationship 38c81bdc-9437-3fa4-cd3b-6bcf575c745d
+	fromColumn: calories_min.timeKey
+	toColumn: Time_Table.TimeKey
+
+relationship a00f34e5-5592-cb92-ce53-368f88b8f7fe
+	fromColumn: heartrate_min.timeKey
+	toColumn: Time_Table.TimeKey
+
+relationship 80b380e3-9f83-2b99-92ee-0b340db234ed
+	fromColumn: heartrate_sec.timeKey
+	toColumn: Time_Table.TimeKey
+
+relationship 58b96176-9f34-7251-d217-21dd350ec45f
+	fromColumn: intensities_min.timeKey
+	toColumn: Time_Table.TimeKey
+
+relationship a92eb930-a6b0-0ec8-25ff-00f59e7650be
+	fromColumn: METs_min.timeKey
+	toColumn: Time_Table.TimeKey
+
+relationship bcb8eb7e-9822-40e4-2928-16a3213d94bd
+	fromColumn: sleep_min.timeKey
+	toColumn: Time_Table.TimeKey
+
+relationship f180840b-e276-071e-4ed3-2c99d82736a3
+	fromColumn: steps_min.timeKey
+	toColumn: Time_Table.TimeKey
+
+relationship 5b889a2d-ad9a-f06c-739e-85cec4de8b6f
+	fromColumn: calories_min.user_id
+	toColumn: user_list.user_id
+
+relationship 221cb141-9bde-7cda-4fc4-58df3455df4e
+	fromColumn: heartrate_min.user_id
+	toColumn: user_list.user_id
+
+relationship a21e461c-e1dc-751f-3197-9d20966a08b2
+	fromColumn: heartrate_sec.user_id
+	toColumn: user_list.user_id
+
+relationship 85be99b5-accf-d711-fe0f-7e6511dfa1b8
+	fromColumn: intensities_min.user_id
+	toColumn: user_list.user_id
+
+relationship cd2d9325-66e7-dd5c-df72-3ca3de7a137f
+	fromColumn: METs_min.user_id
+	toColumn: user_list.user_id
+
+relationship 8baad258-5a33-21ac-f96e-d170d6ac30b5
+	fromColumn: sleep_min.user_id
+	toColumn: user_list.user_id
+
+relationship 8891bbea-7806-3e97-f9b9-b1f601fe2504
+	fromColumn: steps_min.user_id
+	toColumn: user_list.user_id
+
+relationship 4081b3ef-f751-ddc1-9cda-47e86d3b2828
+	fromColumn: weight_daily.user_id
+	toColumn: user_list.user_id
+
+relationship 47d74d35-0956-4fb7-b181-8fc8c95a746d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.Date
+	toColumn: LocalDateTable_742b44c0-ed5c-4387-bac3-14b9e2154138.Date
+
+relationship 3c55a4de-0221-6a3d-2fcd-dd016e1809c3
+	fromColumn: calories_min.date
+	toColumn: date_list.date
+
+relationship 1cd209fd-de02-67d1-76d6-e234e6ed719b
+	fromColumn: heartrate_min.date
+	toColumn: date_list.date
+
+relationship 62ed3c78-598b-7c5b-d26d-d72ed0fd4755
+	fromColumn: heartrate_sec.date
+	toColumn: date_list.date
+
+relationship eed6570a-2e6c-540c-ca06-c4746f513932
+	fromColumn: intensities_min.date
+	toColumn: date_list.date
+
+relationship c94cddd6-c230-c866-bd60-41e2a3ea8f11
+	fromColumn: METs_min.date
+	toColumn: date_list.date
+
+relationship 6280189a-c834-6a77-7486-8fc872eb61e3
+	fromColumn: sleep_min.date
+	toColumn: date_list.date
+
+relationship 6de7a1fa-142d-fb2b-3df9-2bbabb1498d4
+	fromColumn: steps_min.date
+	toColumn: date_list.date
+
+relationship 26697e4c-aff3-5296-7dbc-a22932bced0a
+	fromColumn: weight_daily.date
+	toColumn: date_list.date
+
+relationship fd748ed9-9b4e-6607-66b7-735fc57516e6
+	fromColumn: date_list.date
+	toColumn: Date_Table.Date
+

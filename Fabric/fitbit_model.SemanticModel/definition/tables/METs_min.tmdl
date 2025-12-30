@@ -1,0 +1,79 @@
+table METs_min
+	lineageTag: d07d454c-f64b-4936-9e3c-213c8c815873
+	sourceLineageTag: [dbo].[METs_min]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: aad43b6d-ac22-47e2-9c39-08389f24a241
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_minute
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 273c5eb6-e8e4-4a2d-b3cf-a04ea7a3fdde
+		sourceLineageTag: activity_minute
+		summarizeBy: none
+		sourceColumn: activity_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column mets
+		dataType: int64
+		formatString: 0
+		lineageTag: fda3fdfb-2c0b-4b32-afe8-d2e2a76042ad
+		sourceLineageTag: mets
+		summarizeBy: sum
+		sourceColumn: mets
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9e3e308b-ef5b-47d7-8d27-d3bae6058529
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f4a0a61b-7cc7-4124-a989-6286185b5808
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 34ff4fe1-8471-4a60-b6b4-593e5354d44a
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeKey
+		dataType: string
+		lineageTag: 4fa5edf2-855d-4b24-9adf-0c8a4b6ac473
+		sourceLineageTag: timeKey
+		summarizeBy: none
+		sourceColumn: timeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition METs_min = entity
+		mode: directLake
+		source
+			entityName: METs_min
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

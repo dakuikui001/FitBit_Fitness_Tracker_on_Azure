@@ -1,0 +1,79 @@
+table intensities_min
+	lineageTag: dc6824fc-cf10-4329-b851-86577ee0a988
+	sourceLineageTag: [dbo].[intensities_min]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b59ff565-100e-4388-aa1d-151aecab07e7
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_minute
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ae8d8159-3bf6-4c65-9fd1-a356f01591e7
+		sourceLineageTag: activity_minute
+		summarizeBy: none
+		sourceColumn: activity_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column intensity
+		dataType: int64
+		formatString: 0
+		lineageTag: 41798dfa-5654-46be-814e-18ff4de4987a
+		sourceLineageTag: intensity
+		summarizeBy: sum
+		sourceColumn: intensity
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a4cdca35-44f6-4631-b0a0-b4154c84c71c
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 77886c7f-7a2c-4e56-873f-f1c3d836c574
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: ffffb1b2-d336-4bd9-88ac-3534fefdd473
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeKey
+		dataType: string
+		lineageTag: 13c0a454-6ed9-4c97-a469-812a92ba143f
+		sourceLineageTag: timeKey
+		summarizeBy: none
+		sourceColumn: timeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition intensities_min = entity
+		mode: directLake
+		source
+			entityName: intensities_min
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

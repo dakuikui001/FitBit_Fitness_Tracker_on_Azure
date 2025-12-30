@@ -1,0 +1,80 @@
+table calories_min
+	lineageTag: 042013ba-7ba3-47a7-8e19-6134fdc7cb56
+	sourceLineageTag: [dbo].[calories_min]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c46becf7-48f3-4b01-9f67-f60c125d8435
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_minute
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 97112081-b689-4686-8176-1f70b68c2116
+		sourceLineageTag: activity_minute
+		summarizeBy: none
+		sourceColumn: activity_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column calories
+		dataType: double
+		lineageTag: 92bda896-85f3-48f2-a776-41ceeeacae49
+		sourceLineageTag: calories
+		summarizeBy: sum
+		sourceColumn: calories
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 72a5d27b-51d1-413f-89df-92744f15f931
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b5008420-d292-4050-a183-86300a458ccd
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 3e0e7ec0-94e0-4ba8-abb8-db2eefb592ea
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeKey
+		dataType: string
+		lineageTag: 5d26e06b-d505-491f-991c-6b4e1ccc9e8d
+		sourceLineageTag: timeKey
+		summarizeBy: none
+		sourceColumn: timeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calories_min = entity
+		mode: directLake
+		source
+			entityName: calories_min
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

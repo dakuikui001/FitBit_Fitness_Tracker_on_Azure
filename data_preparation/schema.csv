@@ -1,0 +1,96 @@
+activity
+
+user_id long,
+activity_date date,
+total_steps long,
+total_distance double,
+tracker_distance double,
+logged_activities_distance double,
+very_active_distance double,
+moderately_active_distance double,
+light_active_distance double,
+sedentary_active_distance double,
+very_active_minutes long,
+fairly_active_minutes long,
+lightly_active_minutes long,
+sedentary_minutes long,
+calories long,
+load_time timestamp,
+source_file string
+
+
+calories
+
+user_id long,
+activity_minute timestamp,
+calories double,
+date date,
+load_time timestamp,
+source_file string
+
+
+heartrate
+
+user_id long,
+time timestamp,
+value long,
+date date,
+load_time timestamp,
+source_file string
+
+
+intensities
+
+user_id long,
+activity_minute timestamp,
+intensity long,
+date date,
+load_time timestamp,
+source_file string
+
+
+METs
+
+user_id long,
+activity_minute timestamp,
+mets long,
+date date,
+load_time timestamp,
+source_file string
+
+
+sleep
+
+user_id long,
+activity_minute timestamp,
+value long,
+log_id long,
+date date,
+load_time timestamp,
+source_file string
+
+
+steps
+
+user_id long,
+activity_minute timestamp,
+steps long,
+date date,
+load_time timestamp,
+source_file string
+
+
+weight
+
+
+user_id long,
+date date,
+weight_kg double,
+weight_pounds double,
+fat double,
+bmi double,
+is_manual_report boolean,
+log_id long,
+activity_minute timestamp,
+load_time timestamp,
+source_file string

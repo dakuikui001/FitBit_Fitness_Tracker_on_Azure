@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "fitbit_analysis_report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "57c3f4e7-0da8-8a4f-4657-7b763de8fddd"
+  }
+}

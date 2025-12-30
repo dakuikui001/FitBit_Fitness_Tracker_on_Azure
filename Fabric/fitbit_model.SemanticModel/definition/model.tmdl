@@ -1,0 +1,36 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - LH_fitbit"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table calories_min
+ref table steps_min
+ref table user_list
+ref table intensities_min
+ref table METs_min
+ref table heartrate_sec
+ref table heartrate_min
+ref table weight_daily
+ref table sleep_min
+ref table Date_Table
+ref table DateTableTemplate_8bffa4a5-68d6-4a60-9736-70da2830905e
+ref table LocalDateTable_8db6d0a7-5e7b-4aac-a050-985542f83453
+ref table LocalDateTable_427b7d7a-b8bb-413e-8185-9c806641afbd
+ref table LocalDateTable_d455cac5-550f-4ecc-9713-173ab61aea4d
+ref table Time_Table
+ref table LocalDateTable_90a2c2da-2afc-4c70-b0bf-5582db526e92
+ref table 'Measure Table'
+ref table 'Fitness Metric Selection'
+ref table LocalDateTable_742b44c0-ed5c-4387-bac3-14b9e2154138
+ref table date_list
+ref table 'Fitness TimeRange Metrics Selection'
+

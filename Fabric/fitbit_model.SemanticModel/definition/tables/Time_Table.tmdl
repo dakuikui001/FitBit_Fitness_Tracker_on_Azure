@@ -1,0 +1,112 @@
+table Time_Table
+	lineageTag: 471fba14-ec6a-45c5-abee-70f56afbec6a
+
+	column Time
+		formatString: General Date
+		lineageTag: b9666763-89f7-42a8-8b78-6f33d7722aeb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Time]
+
+		variation Variation
+			isDefault
+			relationship: 020cd9c2-ae95-4fee-9c19-438189361459
+			defaultHierarchy: LocalDateTable_90a2c2da-2afc-4c70-b0bf-5582db526e92.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hour
+		formatString: 0
+		lineageTag: 791fd2f8-c241-4a47-8e17-2cd0da9145af
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Hour]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Minute
+		formatString: 0
+		lineageTag: 93586cb1-07db-4e35-a915-fa7d97a9ea0a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Minute]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Second
+		formatString: 0
+		lineageTag: bc4f3877-7c6b-4c1c-9257-2ee65c6079d4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Second]
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeKey
+		lineageTag: a45aabab-625d-458a-9481-85342c5c5cff
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TimeKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeRange
+		lineageTag: e890a6d3-1e6e-4fd5-b3df-4093ef2dd313
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TimeRange]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Time Hierarchy'
+		lineageTag: 0e5b565b-6e6d-48f1-b185-b5d49682262b
+
+		level Hour
+			lineageTag: 7cd0d549-4b1e-40af-985b-453ede3f869c
+			column: Hour
+
+		level Minute
+			lineageTag: 33d4e6c5-750d-4d50-86d1-b22547bfde31
+			column: Minute
+
+		level Second
+			lineageTag: f1ce435b-c6ba-4192-9e61-996075362cb4
+			column: Second
+
+	partition Time_Table = calculated
+		mode: import
+		source = ```
+				
+				VAR SecondsInDay = GENERATESERIES ( 0, 86399 ) 
+				RETURN
+				SELECTCOLUMNS (
+				    SecondsInDay,
+				    "Time", 
+				        VAR TotalSeconds = [Value]
+				        VAR Hrs = QUOTIENT(TotalSeconds, 3600)
+				        VAR Mins = QUOTIENT(MOD(TotalSeconds, 3600), 60)
+				        VAR Secs = MOD(TotalSeconds, 60)
+				        RETURN TIME(Hrs, Mins, Secs),
+				    "Hour", QUOTIENT([Value], 3600),
+				    "Minute", QUOTIENT(MOD([Value], 3600), 60),
+				    "Second", MOD([Value], 60), -- 直接取余数即为秒 (0-59)
+				    "TimeKey", 
+				        VAR TotalSeconds = [Value]
+				        VAR Hrs = FORMAT(QUOTIENT(TotalSeconds, 3600), "00")
+				        VAR Mins = FORMAT(QUOTIENT(MOD(TotalSeconds, 3600), 60), "00")
+				        VAR Secs = FORMAT(MOD(TotalSeconds, 60), "00")
+				        RETURN Hrs & ":" & Mins & ":" & Secs,
+				    "TimeRange", 
+				        VAR H = QUOTIENT([Value], 3600)
+				        RETURN
+				        SWITCH ( TRUE(),
+				            H < 6, "Night",
+				            H < 12, "Morning",
+				            H < 18, "Afternoon",
+				            "Evening"
+				        )
+				)
+				```
+
+	annotation PBI_Id = 22c2558656dd486b8ad5ddbf66fb5cb8
+

@@ -1,0 +1,3 @@
+Id,ActivityDate,TotalSteps,TotalDistance,TrackerDistance,LoggedActivitiesDistance,VeryActiveDistance,ModeratelyActiveDistance,LightActiveDistance,SedentaryActiveDistance,VeryActiveMinutes,FairlyActiveMinutes,LightlyActiveMinutes,SedentaryMinutes,Calories
+4020332650,2016-03-20,10330,7.40999984741211,7.40999984741211,0.0,0.0,0.0,0.0,0.0,0,0,0,1440,3728
+4057192912,2016-03-20,44,0.0299999993294477,0.0299999993294477,0.0,0.0,0.0,0.0299999993294477,0.0,0,0,2,1438,1782

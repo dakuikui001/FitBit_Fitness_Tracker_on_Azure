@@ -1,0 +1,89 @@
+table sleep_min
+	lineageTag: 9b209980-2993-48b1-8c89-03b13de09e8a
+	sourceLineageTag: [dbo].[sleep_min]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 53ae87b6-4404-46aa-832a-d43a6683de7c
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_minute
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c3351a62-58ab-4ed6-b400-f73da74f8260
+		sourceLineageTag: activity_minute
+		summarizeBy: none
+		sourceColumn: activity_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e26156f-4196-46dc-956a-ce8eda9f7d2f
+		sourceLineageTag: value
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	column log_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7360dc8e-387d-4815-9586-98047df4aeac
+		sourceLineageTag: log_id
+		summarizeBy: sum
+		sourceColumn: log_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: af8a01a7-c091-4de9-9cae-e934c5d3a503
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c684cdff-1fdd-4456-a04b-47aa50810297
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 5d2c7e59-a2c8-4f75-8896-b2ad16c4d121
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeKey
+		dataType: string
+		lineageTag: 0325b92d-7dfe-4d11-96ff-45239778cac9
+		sourceLineageTag: timeKey
+		summarizeBy: none
+		sourceColumn: timeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sleep_min = entity
+		mode: directLake
+		source
+			entityName: sleep_min
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

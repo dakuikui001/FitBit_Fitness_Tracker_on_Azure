@@ -1,0 +1,23 @@
+table date_list
+	lineageTag: cdda1161-d61e-498d-87b7-62acf4afa906
+	sourceLineageTag: [dbo].[date_list]
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: cae43dea-7b86-4bc7-8074-9b0a2f59460f
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	partition date_list = entity
+		mode: directLake
+		source
+			entityName: date_list
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

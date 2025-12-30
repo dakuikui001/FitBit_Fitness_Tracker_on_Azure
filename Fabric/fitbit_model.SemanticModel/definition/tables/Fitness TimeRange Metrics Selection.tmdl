@@ -1,0 +1,51 @@
+table 'Fitness TimeRange Metrics Selection'
+	lineageTag: c3649fe2-472d-4ad0-9123-bd84a89e959f
+
+	column 'Fitness TimeRange Metrics Selection'
+		lineageTag: 904086d5-23c1-40d2-aa0d-df08d2b4f37a
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Fitness TimeRange Metrics Selection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Fitness TimeRange Metrics Selection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fitness TimeRange Metrics Selection Fields'
+		isHidden
+		lineageTag: 9807b865-e433-4ad7-9ab5-59f912eacef0
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Fitness TimeRange Metrics Selection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fitness TimeRange Metrics Selection Order'
+		isHidden
+		formatString: 0
+		lineageTag: c1f848d6-ecf5-407e-919f-6aff9d7cd329
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fitness TimeRange Metrics Selection' = calculated
+		mode: import
+		source =
+				{
+				    ("Activity Minutes", NAMEOF('Measure Table'[Avg Activity Per Day]), 0),
+				    ("Calories", NAMEOF('Measure Table'[Avg Calories Per Day]), 1),
+				    ("In Bed Minutes", NAMEOF('Measure Table'[Avg In Bed Min Per Day]), 2),
+				    ("Fat Burn Minutes", NAMEOF('Measure Table'[Avg Fat Burn Min Per Day]), 3),
+				    ("Steps", NAMEOF('Measure Table'[Avg Steps Per Day]), 4)
+				}
+
+	annotation PBI_Id = 878b44f11c414891ac230806f6d47a9e
+

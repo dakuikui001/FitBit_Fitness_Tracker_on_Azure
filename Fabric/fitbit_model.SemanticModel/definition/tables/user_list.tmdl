@@ -1,0 +1,21 @@
+table user_list
+	lineageTag: 18dea797-f34e-4abc-a5c1-4cf31307697c
+	sourceLineageTag: [dbo].[user_list]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 682675dd-b2bf-4bd4-82b8-08b551cfb128
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition user_list = entity
+		mode: directLake
+		source
+			entityName: user_list
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

@@ -1,0 +1,79 @@
+table heartrate_sec
+	lineageTag: 84833638-d761-4e5d-b391-749a6a0126b2
+	sourceLineageTag: [dbo].[heartrate_sec]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 26b67574-25fc-4a0e-9072-e96f844476b3
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e3679e9a-e764-4fbf-b240-0bb2babd2b44
+		sourceLineageTag: time
+		summarizeBy: none
+		sourceColumn: time
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: int64
+		formatString: 0
+		lineageTag: b274f931-c22e-42fe-8011-0ff0436d988c
+		sourceLineageTag: value
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2b253adf-a297-460a-bcde-c31b5d6692fd
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 631f006f-d28c-4f3e-85bb-478855e295db
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 38fc275b-980e-4fa9-af64-549d82540d1a
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeKey
+		dataType: string
+		lineageTag: 046ebead-97b3-4d29-8534-b4905fafca32
+		sourceLineageTag: timeKey
+		summarizeBy: none
+		sourceColumn: timeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition heartrate_sec = entity
+		mode: directLake
+		source
+			entityName: heartrate_sec
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

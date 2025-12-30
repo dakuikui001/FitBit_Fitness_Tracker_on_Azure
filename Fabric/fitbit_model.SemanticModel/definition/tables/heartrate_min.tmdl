@@ -1,0 +1,72 @@
+table heartrate_min
+	lineageTag: 896ea828-6807-4e15-aa58-26a0009235b2
+	sourceLineageTag: [dbo].[heartrate_min]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ddfb595-8e12-4eb9-90ad-12346d6bafde
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_minute
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 82ef8dd8-c129-4352-8d3f-53451b8bea65
+		sourceLineageTag: activity_minute
+		summarizeBy: none
+		sourceColumn: activity_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_heartrate
+		dataType: double
+		lineageTag: 96883e87-6c60-4662-8d1c-5a6d4c59f6be
+		sourceLineageTag: avg_heartrate
+		summarizeBy: sum
+		sourceColumn: avg_heartrate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_heartrate
+		dataType: double
+		lineageTag: 3709c060-8e40-4dc3-9fc3-e57d06c4ef27
+		sourceLineageTag: max_heartrate
+		summarizeBy: sum
+		sourceColumn: max_heartrate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bcf192d0-65d7-497a-97d5-494bdd9d8e5a
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeKey
+		dataType: string
+		lineageTag: 5327fdf4-4fac-457d-a2ad-b507c0433def
+		sourceLineageTag: timeKey
+		summarizeBy: none
+		sourceColumn: timeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition heartrate_min = entity
+		mode: directLake
+		source
+			entityName: heartrate_min
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

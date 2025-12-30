@@ -1,0 +1,124 @@
+table weight_daily
+	lineageTag: b0e24443-7063-4240-8a12-a4e71734c6dc
+	sourceLineageTag: [dbo].[weight_daily]
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8843e2e4-629b-4503-bdcb-2260f0c7715d
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e57a2cdd-d2f6-4c2e-9910-579e7a285309
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight_kg
+		dataType: double
+		lineageTag: e6bc329c-e768-4181-99b9-ec1c8e051bc3
+		sourceLineageTag: weight_kg
+		summarizeBy: sum
+		sourceColumn: weight_kg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column weight_pounds
+		dataType: double
+		lineageTag: b0116dd5-d4ca-40d5-8793-0bb633712256
+		sourceLineageTag: weight_pounds
+		summarizeBy: sum
+		sourceColumn: weight_pounds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fat
+		dataType: double
+		lineageTag: 3c1bcfe2-96c2-4fcf-9cf2-d27125d76d2e
+		sourceLineageTag: fat
+		summarizeBy: sum
+		sourceColumn: fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bmi
+		dataType: double
+		lineageTag: 74caa0d1-978d-4ab9-8c91-c605171ff980
+		sourceLineageTag: bmi
+		summarizeBy: sum
+		sourceColumn: bmi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_manual_report
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 58c1f555-289b-4a9a-90a1-da6bde9c5405
+		sourceLineageTag: is_manual_report
+		summarizeBy: none
+		sourceColumn: is_manual_report
+
+		annotation SummarizationSetBy = Automatic
+
+	column log_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 31d4e6e1-4b1d-4039-b568-09f1d0928f56
+		sourceLineageTag: log_id
+		summarizeBy: sum
+		sourceColumn: log_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_minute
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fe8484e9-109c-44c5-8cb6-6e8f13163756
+		sourceLineageTag: activity_minute
+		summarizeBy: none
+		sourceColumn: activity_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8f055d46-9f0f-45f7-972d-631418c9f8e2
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 778571b2-c3dc-428a-b65b-2f01a872e9c0
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	partition weight_daily = entity
+		mode: directLake
+		source
+			entityName: weight_daily
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_fitbit'
+

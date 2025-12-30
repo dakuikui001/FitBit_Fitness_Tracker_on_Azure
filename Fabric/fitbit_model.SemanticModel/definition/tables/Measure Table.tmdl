@@ -1,0 +1,275 @@
+table 'Measure Table'
+	lineageTag: 77db9349-b620-4739-8447-6efa9d46ce2c
+
+	measure 'Total Calories' = SUM(calories_min[calories])
+		lineageTag: 9fc94e45-4559-4af7-9540-442e9a32cfc8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Steps' = SUM(steps_min[steps])
+		formatString: 0
+		lineageTag: 9de807c0-10c6-4676-85f3-c49caa77675c
+
+	measure 'Avg Weight' = AVERAGE(weight_daily[weight_kg])
+		lineageTag: 1a0d8994-7294-4264-bc18-5529b45733cf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Weight' = MAX(weight_daily[weight_kg])
+		lineageTag: 372d346a-da93-493e-b51c-0e39d311e217
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Min Weight' = MIN(weight_daily[weight_kg])
+		lineageTag: ed6e24b0-b318-41ba-89d1-cc8a9053e193
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg BMI' = AVERAGE(weight_daily[bmi])
+		lineageTag: 3c476704-36c1-440e-907b-4593293ae354
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max BMI' = MAX(weight_daily[bmi])
+		lineageTag: 04b73421-5407-4606-841d-46ad41502733
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Min BMI' = MIN(weight_daily[bmi])
+		lineageTag: b57cbec3-6b26-4432-80b7-c59e8970aa7d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Sedentary Minutes' = CALCULATE(COUNTROWS(intensities_min), intensities_min[intensity] = 0)
+		formatString: 0
+		lineageTag: dc59142e-0256-41c8-8d25-8b29204de662
+
+	measure 'Total Lightly Active Minutes' = CALCULATE(COUNTROWS(intensities_min), intensities_min[intensity] = 1)
+		formatString: 0
+		lineageTag: ce331010-481d-4232-9f28-f6c8511161ed
+
+	measure 'Total Fairly Active Minutes' = CALCULATE(COUNTROWS(intensities_min), intensities_min[intensity] = 2)
+		formatString: 0
+		lineageTag: 97ba1d7b-8084-4d06-91d7-038f3c805af3
+
+	measure 'Total Very Active Minutes' = CALCULATE(COUNTROWS(intensities_min), intensities_min[intensity] = 3)
+		formatString: 0
+		lineageTag: 115be9b9-ed15-40d4-bf81-7fe1165df231
+
+	measure 'Intensity Count' = ```
+			
+			    COUNTROWS(
+			        SUMMARIZE('intensities_min', 'intensities_min'[date], 'intensities_min'[user_id])
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: fea80f99-536d-4ac5-85f7-df52fc943bd0
+
+	measure 'Avg Sedentary Min Per day' = DIVIDE([Total Sedentary Minutes], [Intensity Count])+ 0
+		lineageTag: 3e93d3f2-f8b3-4185-b607-3b76f0ffce7c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Lightly Min Per day' = DIVIDE([Total Lightly Active Minutes], [Intensity Count])+ 0
+		lineageTag: f2500f5b-1de6-475e-ae52-3134077c4461
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Sedentary Hour Per day' = [Avg Sedentary Min Per day] / 60
+		lineageTag: dccbf8d4-3be1-40d2-881f-5f12771fe320
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Lightly Hour Per day' = [Avg Lightly Min Per day]/60
+		lineageTag: 8a7dcf9d-212d-4c8f-9f5e-f10b738fcc0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Fairly Min Per Day' = DIVIDE([Total Fairly Active Minutes], [Intensity Count])+ 0
+		lineageTag: 56bf2236-a15b-4dc1-a7f4-011b998b70e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Fairly Hour Per Day' = [Avg Fairly Min Per Day]/ 60
+		lineageTag: 0bb95e96-87be-46ec-8705-d61552a9ffd5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Very Min Per Day' = DIVIDE([Total Very Active Minutes], [Intensity Count])+ 0
+		lineageTag: 5abee75c-5674-4db6-b252-6de0c63da8fd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Very Hour Per Day' = ```
+			[Avg Very Min Per Day] / 60 
+			```
+		lineageTag: 279f5441-8e13-4880-aa9c-7192b7676f7c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Heartrate Per Min' = ```
+			AVERAGEX(
+			    SUMMARIZE(
+			        heartrate_sec, 
+			        Date_Table[Date],
+			        Time_Table[Hour],
+			        Time_Table[Minute]
+			    ),
+			    CALCULATE(AVERAGE(heartrate_sec[value]))
+			) + 0
+			```
+		lineageTag: 75407c57-d053-45af-b504-87f433c45905
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Asleep Minutes' = CALCULATE(COUNTROWS(sleep_min), sleep_min[value] = 1)
+		formatString: 0
+		lineageTag: 246c4fdf-7c76-46c7-aa3e-e9c9fb0cc3b3
+
+	measure 'Total Restless Minutes' = CALCULATE(COUNTROWS(sleep_min), sleep_min[value] = 2)
+		formatString: 0
+		lineageTag: 3a99f690-7952-403d-a892-538baf898f27
+
+	measure 'Total Awake Minutes' = CALCULATE(COUNTROWS(sleep_min), sleep_min[value] = 3)
+		formatString: 0
+		lineageTag: 1d9b8df5-f30f-42ce-a072-ca4dc95cc9cb
+
+	measure 'Total Time In Bed' = COUNTROWS(sleep_min) + 0
+		formatString: 0
+		lineageTag: bcc321a2-c557-4ac6-95e1-673cf72983b0
+
+	measure 'Sleep Count' = COUNTROWS(SUMMARIZE(sleep_min, sleep_min[user_id], sleep_min[date]))
+		formatString: 0
+		lineageTag: 23871257-da5a-4578-a9d4-d4c89565fe8a
+
+	measure 'Avg Asleep Min Per Day' = DIVIDE([Total Asleep Minutes], [Sleep Count]) + 0
+		lineageTag: a43f2c0c-b934-43f6-9684-c77562ca7391
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Restless Min Per Day' = DIVIDE([Total Restless Minutes] , [Sleep Count])+ 0
+		lineageTag: 4e4a699a-796c-4251-bb9f-20dcb7f91634
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Awake Min Per Day' = DIVIDE([Total Awake Minutes], [Sleep Count]) + 0
+		lineageTag: 13d2e550-fe82-4f84-a489-4eff7fa56d94
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg In Bed Min Per Day' = DIVIDE([Total Time In Bed], [Sleep Count]) + 0
+		lineageTag: 3c173b93-6761-43fa-98d6-80a56f8f6b9b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Asleep Hour Per Day' = [Avg Asleep Min Per Day] / 60
+		lineageTag: 2eef52aa-5522-497e-ba64-a72a899b2527
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Awake Hour Per Day' = [Avg Awake Min Per Day]/ 60
+		lineageTag: 4d7852de-8f72-4847-b405-dd2c0dd43762
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg In Bed Hour Per Day' = [Avg In Bed Min Per Day]/60
+		lineageTag: ccc25b08-bca7-4699-aa85-b553bc558f5d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Restless Hour Per Day' = [Avg Restless Min Per Day] / 60
+		lineageTag: 48d63084-3f2e-4ad6-9f52-d30d1a2b73fa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Fat Burn Minutes' = CALCULATE(COUNTROWS(METs_min), METs_min[mets] >= 30)
+		formatString: 0
+		lineageTag: 9bf19f3b-542b-46d3-aec7-fbeff0d29bb8
+
+	measure 'Mets Count' = COUNTROWS(SUMMARIZE(METs_min, METs_min[user_id], METs_min[date]))
+		formatString: 0
+		lineageTag: 74cff56f-7e9c-48cc-80ff-a25851e775ac
+
+	measure 'Avg Fat Burn Min Per Day' = DIVIDE([Total Fat Burn Minutes], [Mets Count])+ 0
+		lineageTag: fd37c606-de3d-45a4-b234-dcc78f0bf691
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Fat Burn Hour Per Day' = [Avg Fat Burn Min Per Day] / 60
+		lineageTag: 35fd3cad-af45-45f6-849d-0d619e9ee076
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Calory Count' = COUNTROWS(SUMMARIZE(calories_min, calories_min[user_id], calories_min[date]))
+		formatString: 0
+		lineageTag: 16b4be59-b959-4549-b066-ab1abc2d8d05
+
+	measure 'Avg Calories Per Day' = DIVIDE([Total Calories], [Calory Count]) + 0
+		lineageTag: f8c95f86-fc11-4be0-8088-837d6a173170
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Step Count' = COUNTROWS(SUMMARIZE(steps_min, steps_min[date], steps_min[user_id]))
+		formatString: 0
+		lineageTag: 5bca4646-a751-4453-9ac3-930c769b8b62
+
+	measure 'Avg Steps Per Day' = DIVIDE([Total Steps], [Step Count])+ 0
+		lineageTag: 9be19dcc-b7ec-443f-809f-36a9af6afe5c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sleep Habit Labels' = IF([Avg In Bed Hour Per Day] > 9, "Long Sleeper", IF([Avg In Bed Hour Per Day] < 6, "Short Sleeper", "Healthy Sleeper"))
+		lineageTag: 91e83df0-8951-40e7-8d2f-d1d251db097a
+
+	measure 'Activity Level Labels' = IF([Avg Fat Burn Min Per Day] > 60, "Fitness Enthusiast", IF([Avg Fat Burn Min Per Day] < 10, "Sedentary User", "Active User"))
+		lineageTag: 320c8bc9-8800-4c0d-a413-46db2cf908b4
+
+	measure 'Metabolic Labels' = IF([Avg Calories Per Day] >= 2000, "High Burner", IF([Avg Calories Per Day] < 1500, "Low Burner", "Average Burner"))
+		lineageTag: 1de1024c-6365-433e-a0ea-e024ea7b1378
+
+	measure DateExists = IF(ISBLANK(COUNTROWS(date_list)), 0, 1)
+		formatString: 0
+		lineageTag: 581d9dba-b156-4424-8fc4-4b0be3e2ccba
+
+	measure 'Avg Activity Per Day' = CALCULATE(COUNTROWS(intensities_min), intensities_min[intensity] IN {1,2,3}) / [Intensity Count] + 0
+		lineageTag: 1600133b-4f17-4f43-aaed-f4dc78c6a11d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tooltip Time' = ```
+			
+			-- 1. 获取当前筛选上下文中的日期
+			VAR _Date = SELECTEDVALUE(Date_Table[Date]) 
+			
+			-- 2. 获取当前的时间层级
+			VAR _Hour = SELECTEDVALUE(Time_Table[Hour])
+			VAR _Minute = SELECTEDVALUE(Time_Table[Minute])
+			
+			-- 3. 定义日期部分的显示格式 (例如: 2025/12/24)
+			VAR _DateStr = FORMAT(_Date, "yyyy/MM/dd ") 
+			
+			-- 4. 根据是否下钻到分钟级，拼接日期和时间
+			RETURN
+			IF(
+			    ISFILTERED(Time_Table[Minute]), 
+			    _DateStr & FORMAT(TIME(_Hour, _Minute, 0), "HH:mm"), 
+			    _DateStr & FORMAT(TIME(_Hour, 0, 0), "HH:00")
+			)
+			```
+		lineageTag: c895225f-b87c-4a9a-88f9-4be83090ea90
+
+	column Value
+		lineageTag: b49e35da-85ac-4c34-8e95-216068427cec
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Measure Table' = calculated
+		mode: import
+		source = {""}
+
+	annotation PBI_Id = aa4f88d0cbcb40a69ab63d86c9571fd7
+

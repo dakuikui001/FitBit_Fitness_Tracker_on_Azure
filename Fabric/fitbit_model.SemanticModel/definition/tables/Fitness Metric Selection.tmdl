@@ -1,0 +1,58 @@
+table 'Fitness Metric Selection'
+	lineageTag: 308e2023-6dcd-4013-a671-524d917de299
+
+	column 'Fitness Metric Selection'
+		lineageTag: 44733e6b-1c7e-47e9-963e-d40787d16c21
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Fitness Metric Selection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Fitness Metric Selection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fitness Metric Selection Fields'
+		isHidden
+		lineageTag: e250b7cd-8b40-41f3-afb0-9629b28ea9ac
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Fitness Metric Selection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fitness Metric Selection Order'
+		isHidden
+		formatString: 0
+		lineageTag: e0f2646e-7ec9-4d43-988c-1bb4ef9bf716
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fitness Metric Selection' = calculated
+		mode: import
+		source =
+				{
+				    ("Asleep Hours", NAMEOF('Measure Table'[Avg Asleep Hour Per Day]), 0),
+				    ("Restless Hours", NAMEOF('Measure Table'[Avg Restless Hour Per Day]), 1),
+				    ("Awake Hours", NAMEOF('Measure Table'[Avg Awake Hour Per Day]), 2),
+				    ("In Bed Hours", NAMEOF('Measure Table'[Avg In Bed Hour Per Day]), 3),
+				    ("Sedentary Hours", NAMEOF('Measure Table'[Avg Sedentary Hour Per day]), 4),
+				    ("Lightly Activity Hours", NAMEOF('Measure Table'[Avg Lightly Hour Per day]), 5),
+				    ("Fairly Activity Hours", NAMEOF('Measure Table'[Avg Fairly Hour Per Day]), 6),
+				    ("Very Activity Hours", NAMEOF('Measure Table'[Avg Very Hour Per Day]), 7),
+				    ("Fat Burn Hours", NAMEOF('Measure Table'[Avg Fat Burn Hour Per Day]), 10),
+				    ("Steps", NAMEOF('Measure Table'[Avg Steps Per Day]), 8),
+				    ("Calories", NAMEOF('Measure Table'[Avg Calories Per Day]), 9),
+				    ("Heartrates", NAMEOF('Measure Table'[Avg Heartrate Per Min]), 11)
+				}
+
+	annotation PBI_Id = 42c3f4a718ff4c0989eceaccb006b3b0
+
